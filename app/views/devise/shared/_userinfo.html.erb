@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+  <h2>User info</h1><br>
+  	<%= attachment_image_tag post_image.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+    <%= current_user.name %>
+    <%= current_user.introduction %>
+
+    <% end %>
+
+
+
+</body>
+</html>
+
+
+

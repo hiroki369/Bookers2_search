@@ -1,0 +1,13 @@
+<%= notice %>
+
+
+<br>
+<% @books.each do |book| %>
+	<tr>
+		<td><%= book.title %></td>
+		<td><%= book.body %></td>
+	</tr>
+	<% end %>
+
+  </tbody>
+</table>
