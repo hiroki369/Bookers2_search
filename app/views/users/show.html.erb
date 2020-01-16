@@ -1,13 +1,26 @@
 <%= notice %>
 
 
-<br>
-<% @books.each do |book| %>
+<%= render 'userinfo',user: @user,book: @book %>
+
+
+<h2>Books</h2>
+<table>
+
 	<tr>
-		<td><%= book.title %></td>
+		<th>Title</th>
+		<th>Opinion</th>
+	</tr>
+	<tr><% @user.books.each do |book| %>
+
+
+		<td>
+            <%= link_to book_path(book) do %>
+	        <%= book.title %>
+	        <% end %>
+		</td>
+
 		<td><%= book.body %></td>
 	</tr>
 	<% end %>
-
-  </tbody>
 </table>
