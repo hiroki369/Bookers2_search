@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
+end
 
   def index
     @user = current_user
@@ -18,6 +19,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    @book_new = Book.new
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save

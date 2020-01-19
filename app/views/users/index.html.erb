@@ -1,16 +1,29 @@
 
-<%= render 'userinfo',user: @user,book: @book %>
+<div class="container">
+    <div class ="row">
+      <div class = "col-xs-3">
+        <%= render 'userinfo',user: @user,book: @book %>
 
 
-<h1>Users</h1>
+          <div class ="col-xs-9">
+             <h2>Users</h2>
+               <table class ="table table-hover table-inverse">
 
-<% @users.each do |user| %>
-<h1><%= user.name %></h1>
+                  <tr>
+                  <th>Image</th>
+                  <th>name</th>
+                  <th colspan="3"></th>
+              </tr>
+              <% @users.each do |user| %>
 
-<%= link_to user_path(user), class: 'show' do %>
-<p>show</p>
+              <tbody>
+              	<tr>
+              		<td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %></td>
+              		<td><%= user.name %></td>
+              		<td><%= link_to user_path(user), class: 'show' do %><p>Show</p><td>
+              			<% end %>
+              			<% end %>
+              			<tr>
+              	</table>
 
-
-<% end %>
-<% end %>
 

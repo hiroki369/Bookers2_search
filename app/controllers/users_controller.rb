@@ -1,9 +1,19 @@
 class UsersController < ApplicationController
 
-	before_action :authenticate_user!
+before_action :authenticate_user!
+
+
+def correct_user
+  @user = current_user
+    unless @user
+      redirect_to root_path
+    end
+end
+
 
   def show
   	@user = User.find(params[:id])
+  	@book = Book.new
   	@book_new  = Book.new
 
   end
@@ -33,6 +43,9 @@ end
 def user_params
 	params.require(:user).permit(:name, :introduction, :profile_image)
 end
+
+
+
 
 
 end

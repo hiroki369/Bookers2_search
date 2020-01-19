@@ -6,34 +6,52 @@
 </head>
 <body>
 
-  <h2>User info</h1><br>
-  	<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %><br>
-<table>
-    <tbody>
-        <tr>
-            <th>name</th>
-            <th><%= user.name %></th>
-        </tr>
-            <th>introduction</th>
-            <th><%= user.introduction %></th>
-    </tbody>
-</table>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-xs-3">
+            <h2>User info</h2>
+            <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %><br>
+            <table class = table>
+                <tbody>
+                    <tr>
+                       <th>name</th>
+                       <th><%= user.name %></th>
+                    </tr>
+                       <th>introduction</th>
+                       <th><%= user.introduction %></th>
+                </tbody>
+            </table>
 
-<h2> <%= link_to "Edit", edit_user_path(current_user) %> </h2>
+    <div class = "row">
+        <%= link_to edit_user_path(current_user) do %>
+          <div class="btn btn-default col-xs-12 glyphicon glyphicon-wrench"></div>
+          <% end %>
+    </div>
 
-<h1>New Book</h1>
+    <h1>New book</h1>
+        <div class ="field row">
 
-<%= form_for(@book_new) do |f| %>
+               <%= form_for(@book_new) do |f| %>
 
-    <h4>Title</h4>
-    <%= f.text_field :title %>
+               <h4>Title</h4>
+                     <%= f.text_field :title , class: "col-xs-12"%>
+        </div>
 
-    <h4>Opinion</h4>
-    <%= f.text_area :body %>
+        <div class ="field row form-group">
+                <h4>Opinion</h4>
+                     <%= f.text_area :body, class: "col-xs-12" %>
+        </div>
 
-    <br><%= f.submit 'Create Book' %>
+                <%= f.submit 'Create Book', class: "btn btn-primary col-xs-12 form-control" %>
 
-<% end %>
+                <% end %>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 </html>
 
 

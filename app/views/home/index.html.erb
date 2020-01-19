@@ -14,15 +14,27 @@
 
 
 
+<% if user_signed_in? %>
 <div class="row">
-	<p class = "btn btn-info col-xs-10 col-xs-offset-1 sign_in">
-      <%= link_to "Log in", new_user_session_path %></p>
+      <%= link_to "Log in", user_path(current_user), class: "btn btn-info col-xs-10 col-xs-offset-1 sign_in" %></p>
 </div>
 
 <div class = "row">
-	<p class = "btn btn-success col-xs-10 col-xs-offset-1 sign_up">
-      <%= link_to "Sign up", new_user_registration_path %>
+      <%= link_to "Sign Up", user_path(current_user), class: "btn btn-success col-xs-10 col-xs-offset-1 sign_up" %>
+
+<% else %>
+
+
+
+<div class="row">
+      <%= link_to "Log in", new_user_session_path, class: "btn btn-info col-xs-10 col-xs-offset-1 sign_in" %></p>
+</div>
+
+<div class = "row">
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success col-xs-10 col-xs-offset-1 sign_up" %>
     </p>
+
+<% end %>
 </div>
 
 

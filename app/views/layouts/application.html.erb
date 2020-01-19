@@ -15,37 +15,60 @@
 
         <div class="container">
           <nav class = "nav navbar-nav navbar-left">
-            <span>Bookers</span>
+            <span class = "booktitle">Bookers</span>
           </nav>
       <nav>
           <ul class ="nav navbar-nav navbar-right">
+
+
             <% if user_signed_in? %>
 
              <li><%= link_to user_path(current_user) do %>
-                <span class = "glyphicon glyphicon-home" >Home</span>
+                <span class = "glyphicon glyphicon-home" > Home</span>
              <% end %>
              </li>
 
-            <%= link_to users_path do %>
-                <li class = "glyphicon glyphicon-user">Users</li>
+            <li><%= link_to users_path do %>
+                <span class = "glyphicon glyphicon-user"> Users</span>
             <% end %>
-            <%= link_to books_path do %>
-                <li class = "glyphicon glyphicon-book">Books</li>
-            <% end %>
-            <%= link_to destroy_user_session_path, method: :delete do %>
-                <li class = "glyphicon glyphicon-log-out">logout</li>
-            <% end %>
+            </li>
 
-      <% else %>
+            <li><%= link_to books_path do %>
+              <span class = "glyphicon glyphicon-book"> Books</span>
+            <% end %>
+            </li>
+
+
+            <li><%= link_to destroy_user_session_path, method: :delete do %>
+                <span class = "glyphicon glyphicon-log-out">logout</span>
+            <% end %>
+            </li>
+
+            <% else %>
+
             <li><%= link_to root_path  do %>
-                <sapn class = "glyphicon glyphicon-home">Home</span>
+                <sapn class = "glyphicon glyphicon-home"> Home</span>
             <% end %>
            </li>
 
-            <li> <%= link_to "About", home_about_path %> </li>
-            <li> <%= link_to "sign up", new_user_registration_path %> </li>
-            <li> <%= link_to "login", new_user_session_path %> </li>
-             <% end %>
+            <li> <%= link_to home_about_path do %>
+              <span class="glyphicon glyphicon-link" > About</span>
+              <% end %>
+            </li>
+
+
+            <li> <%= link_to new_user_registration_path do %>
+              <span class="glyphicon glyphicon-edit" > sign up</span>
+              <% end %>
+            </li>
+
+
+            <li> <%= link_to new_user_session_path do %>
+            <span class="glyphicon glyphicon-log-in" > login</span>
+            <% end %>
+          </li>
+
+        <% end %>
 
          </ul>
      </nav>
