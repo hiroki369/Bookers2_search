@@ -34,15 +34,15 @@
                <%= form_for(@book_new) do |f| %>
 
                <h4>Title</h4>
-                     <%= f.text_field :title , class: "col-xs-12"%>
-        </div>
+                     <%= f.text_field :title , class: "col-xs-12"%></div>
 
         <div class ="field row form-group">
                 <h4>Opinion</h4>
-                     <%= f.text_area :body, class: "col-xs-12" %>
-        </div>
+                     <%= f.text_area :body, class: "col-xs-12" %></div>
 
-                <%= f.submit 'Create Book', class: "btn btn-primary col-xs-12 form-control" %>
+        <div class ="action row">
+                <%= f.submit 'Create Book', class: "btn btn-primary col-xs-12 form-control" %></div>
+
 
                 <% end %>
             </div>
