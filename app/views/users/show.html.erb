@@ -1,24 +1,32 @@
 <%= notice %>
 
 <div class="container">
-    <div class ="row">
-      <div class = "col-xs-3">
-      	<%= render 'userinfo',user: @user,book: @book %>
-<div class ="col-xs-9">
-  <h2>Books</h2>
-	<table class ="table table-hover table-inverse">
-	     <tr>
-	     	<th>Title</th>
-	     	<th>Opinion</th>
-	     </tr>
-	     <tr>
-	     	  <% @user.books.each do |book| %>
-                <td>
-             	 <%= link_to book_path(book) do %>
-                 <%= book.title %>
-            	 <% end %>
-               </td>
-               <td><%= book.body %></td>
-    	 </tr>
-    	<% end %>
-   </table>
+  <div class ="row">
+    <div class = "col-xs-3">
+     <%= render 'userinfo',user: @user,book: @book %>
+     <div class ="col-xs-9">
+      <h2>Books</h2>
+      <table class ="table table-hover table-inverse">
+        <tr>
+         <th>Title</th>
+         <th>Opinion</th>
+       </tr>
+       <tr>
+         <% @user.books.each do |book| %>
+         <td>
+           <%= link_to book_path(book) do %>
+           <%= book.title %>
+           <% end %>
+         </td>
+         <td><%= book.body %></td>
+       </tr>
+       <% end %>
+     </table>
+
+     <h2>フォロー・フォロワー数</h2>
+     <%= @user.follow_count %>
+     <%= link_to "フォロー", {controller: :users,action: :follow_list,user_id: @user.id}, method: :get %>
+     <%= @user.followers_count %>
+     <%= link_to "フォロワー", {controller: :users,action: :follower_list,user_id: @user.id}, method: :get %>
+
+     <%= render 'follow_form' %>

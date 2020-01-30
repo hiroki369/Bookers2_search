@@ -13,6 +13,8 @@ class BooksController < ApplicationController
     @book_new  = Book.new
     @book = Book.find(params[:id])
     @user = User.all
+    @post_comment = PostComment.new
+    @favorite = Favorite.all
   end
 
   def create
@@ -56,6 +58,9 @@ def book_params
   params.require(:book).permit(:title, :body)
 end
 
+def post_comment_params
+  params.require(:post_comment).permit(:comment, :user_id, :book_id)
+end
 
 
 end

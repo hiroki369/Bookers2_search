@@ -1,0 +1,10 @@
+<div class = "container">
+  <h1>Editing Comments</h1>
+  <dic class ="row">
+  <div class ="col-xs-9">
+<%= form_for [@book,@post_comment] do |f| %>
+    <h4>Comments</h4>
+    <%= f.text_area :comment ,class: "col-xs-12 form-group" %>
+
+    <%= f.submit 'Update Comment', class: "btn btn-primary col-xs-12" %>
+ <% end %>

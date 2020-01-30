@@ -1,30 +1,97 @@
-<%= notice %>
+  <head>
+    <meta charset="utf-8">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+  </head>
+  <%= notice %>
 
-<div class="container">
+  <div class="container">
     <div class ="row">
       <div class = "col-xs-3">
-      	<%= render 'error', book: @book %>
-         <%= render 'users/userinfo',user: @book.user,book: @book_new %>
+       <%= render 'error', book: @book %>
+       <%= render 'users/userinfo',user: @book.user,book: @book_new %>
 
 
-<div class ="col-xs-9">
+       <div class ="col-xs-9">
 
-<h1>Book detail</h1>
+        <h1>Book detail</h1>
 
 
-<table class ="table table-hover table-inverse">
-	<tr>
-	  <td><%= link_to user_path(@book.user) do %>
+        <table class ="table table-hover table-inverse">
+         <tr>
+           <td><%= link_to user_path(@book.user) do %>
 
-	  	     <%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %><br>
+             <%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %><br>
              <%= @book.user.name %></td>
-          <% end %>
-      <td><%= @book.title %></td>
-      <td><%= @book.body %></td>
+             <% end %>
+             <td><%= @book.title %></td>
+             <td><%= @book.body %></td>
+             <td> <td>    <% if @book.favorited_by?(current_user) %>
+              <%= link_to book_favorites_path(@book), method: :delete do %>
+              <span class="fa fa-heart" aria-hidden="true" style="color: red;"></span>
+              <%= @book.favorites.count %> いいね
+              <% end %>
+              <% else %>
+              <%= link_to book_favorites_path(@book), method: :post do %>
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+              <%= @book.favorites.count %> いいね
+              <% end %>
+              <% end %></td>
+              <% if @book.user == current_user %>
+              <td><%= link_to "Edit", edit_book_path(@book) , class: "btn-sm btn-success" %></td>
+              <td><%= link_to "Destroy", book_path(@book) , class: "btn-sm btn-danger", method: :delete, data: { confirm: '本当に消しますか？'} %></td>
+              <% end %>
+            </tr>
+          </table>
 
-      <% if @book.user == current_user %>
-     <td><%= link_to "Edit", edit_book_path(@book) , class: "btn-sm btn-success" %></td>
-     <td><%= link_to "Destroy", book_path(@book) , class: "btn-sm btn-danger", method: :delete, data: { confirm: '本当に消しますか？'} %></td>
-     <% end %>
-    </tr>
-</table>
+        <h1>いいねしたユーザー</h1>
+        <table class = "table table-hover table-inverse">
+      <tr>
+        <th>User</th>
+      </tr>
+      <tr>
+        <% @book.favorites.each do |favorite| %>
+        <td><%= favorite.user.name %></td>
+        <% end %>
+      </tr>
+        </table>
+
+        <!-- 投稿一覧 -->
+        <div class ="col-xs-9">
+          <h1>Comments</h1>
+          <% @book.post_comments.each do |post_comment| %>
+          <table class = "table table-hover table-inverse">
+            <tr>
+              <th>User image</th>
+              <th>User Name</th>
+              <th>Comments</th>
+              <th>Posted date</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr>
+              <td><%= attachment_image_tag post_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size: '40x40'%></td>
+              <td><%= post_comment.user.name %></td>
+              <td><%= post_comment.comment %></td>
+              <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+              <% if post_comment.user == current_user %>
+              <td><%= link_to "編集", edit_book_post_comment_path(post_comment.book, post_comment.id) , class: "btn-sm btn-success" %></td>
+              <td><%= link_to "削除", book_post_comment_path(post_comment) , class: "btn-sm btn-danger", method: :delete, data: { confirm: '本当に消しますか？'} %></td>
+              <td colspan="2"></td>
+              <% end %>
+            </tr>
+          </table>
+          <% end %>
+        </div>
+
+
+        <!-- 投稿フォーム -->
+        <div class ="col-xs-9", class = "pull-right">
+          <%= form_for [@book, @post_comment] do |f| %>
+          <div class="row">
+              <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+          </div>
+          <%= f.submit "Post", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+          <% end %>
+        </div>
+    </div>

@@ -1,0 +1,8 @@
+<h1 class = ><%= @post_comment.comment %></h1>
+
+<table>
+            <% if @post_comment.user == current_user %>
+            <td><%= link_to "Edit", edit_book_post_comment(@post_comment), class: "btn-sm btn-success" %></td>
+            <td><%= link_to "Destroy", "#" , class: "btn-sm btn-danger", method: :delete, data: { confirm: '本当に消しますか？'} %></td>
+            <% end %>
+</table>
