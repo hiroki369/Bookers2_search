@@ -9,9 +9,6 @@ has_many :post_comments, dependent: :destroy
 has_many :favorites, dependent: :destroy
 attachment :profile_image
 
-acts_as_followable # フォロワー機能
-acts_as_follower   # フォロー機能
-
 
 validates :name, presence: true
 validates :name, length: { in: 2..20}
