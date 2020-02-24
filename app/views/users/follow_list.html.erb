@@ -1,6 +1,0 @@
-<h1>フォローユーザー一覧</h1>
-
-<% @user.all_following.each do |user| %>
-  <%= user.name %>
-  <%= link_to 'show', user_path(user) %>
-<% end %>

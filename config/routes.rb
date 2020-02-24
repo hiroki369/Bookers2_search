@@ -8,6 +8,7 @@ resources :users
 
 root to:'home#index'
 get "home/about"
+get "home/search"
 
 
 put 'users/follow/:user_id' => 'users#follow'
