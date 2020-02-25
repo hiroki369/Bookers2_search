@@ -17,8 +17,21 @@
                        <th>name</th>
                        <th><%= user.name %></th>
                     </tr>
+                    <tr>
                        <th>introduction</th>
                        <th><%= user.introduction %></th>
+                    </tr>
+                    <tr>
+                       <th>Follows</th><th><%= link_to user_follow_path(user) do %><%= user.followings.count %></th>
+                       <% end %>
+                    </tr>
+                    <tr>
+                       <th>Followers</th><th><%= link_to user_follower_path(user) do %><%= user.followed.count %></th>
+                       <% end %>
+                    </tr>
+                    <tr>
+                      <th><%= render 'users/follow_btn', user: user %></th>
+                    </tr>
                 </tbody>
             </table>
 

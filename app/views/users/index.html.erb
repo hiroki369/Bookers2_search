@@ -14,9 +14,11 @@
                   <tr>
                   <th>Image</th>
                   <th>name</th>
-                  <th colspan="3"></th>
+                  <th>フォロー数</th>
+                  <th>フォロワー数</th>
+                  <th>フォローボタン</th>
               </tr>
-              <% @users.each do |user| %>
+           <% @users.each do |user| %>
 
 
 
@@ -24,9 +26,13 @@
               	<tr>
               		<td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %></td>
               		<td><%= user.name %></td>
+                  <td><%= user.followings.count %></td>
+                  <td><%= user.followed.count %></td>
+                  <td><%= render 'follow_btn', user: user %>
+                  </td>
               		<td><%= link_to user_path(user), class: 'show' do %><p>Show</p><td>
               			<% end %>
-              			<% end %>
+          <% end %>
               			<tr>
               	</table>
 
