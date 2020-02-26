@@ -16,4 +16,6 @@ get "home/search"
 
 resources :relationships, only: [:create, :destroy]
 
+get '/search', to: 'searches#index', :as => :search_result
+
 end

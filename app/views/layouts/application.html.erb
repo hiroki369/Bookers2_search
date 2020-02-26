@@ -22,6 +22,13 @@
 
 
             <% if user_signed_in? %>
+            <li><%= form_tag(search_result_path,:method => 'get',class:'navbar-form') do %>
+                <%= select_tag :target, options_for_select([["ユーザー","user"], ["本","book"]],:selected=>"user") %>
+                <%= select_tag :method, options_for_select([["完全一致","perfect"], ["前方一致","forward"],["後方一致","backward"],["部分一致","partial"]],:selected=>"perfect") %>
+                <%= text_field_tag :search, nil %>
+                <%= submit_tag 'Search', :name => nil %>
+            <% end %>
+            </li>
 
              <li><%= link_to user_path(current_user) do %>
                 <span class = "glyphicon glyphicon-home" > Home</span>
